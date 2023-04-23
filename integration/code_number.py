@@ -95,9 +95,9 @@ def number_recognition(tab_num_to_reco, tab_num_model, orientation):
 
 
 # Ecriture dans un .txt des numéro trouvé dans tab_num_find
-def write_sudoku(tab_num_find,name_sudoku,path_to_write):
-    name_sudoku = name_sudoku + '.txt'
-    sudoku_txt = open(path_to_write / name_sudoku ,"w")
+def write_sudoku(tab_num_find):
+    name_sudoku = "sudoku_to_resolve" + ".txt"
+    sudoku_txt = open(name_sudoku ,"w")
     
     for row in range(tab_num_find.shape[0]):
         for colum in range(tab_num_find.shape[1]):

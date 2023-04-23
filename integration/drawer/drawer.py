@@ -1,10 +1,11 @@
 import serial
+from drawer import IOmanager
+from drawer import serWriter
+
 from time import sleep
-from IOmanager import IOmanager
-from serWriter import serWriter
 
 def get_inc(i, j):
-     return j if (i%2 != 1) else 8-j
+    return j if (i%2 != 1) else 8-j
 
 def dist2time(x):
     return 0.1 * x
@@ -39,35 +40,35 @@ def get_good_coord(bad_coord):
 
 def draw(case_size, coords):
 
-    Io = IOmanager()
-    write_on_ser = serWriter(ser)
-
     port = "/COM3"
-    ser = serial.Serial(port, 9600)
-    ser.reset_input_buffer()
+    #ser = serial.Serial(port, 9600)
+    #ser.reset_input_buffer()
 
-    
-    x_origin, y_origin = Io.get_origin()
+    Io = IOmanager.IOmanager()
+    #write_on_ser = serWriter.serWriter(ser)
+
+    x_origin, y_origin = Io.origin()
     sudoku = Io.sudoku()
 
-    write_on_ser.draw(0, 0, 0)
+    #write_on_ser.draw(0, 0, 0)
     sleep(0.5)
-    write_on_ser.reset()
+    #write_on_ser.reset()
     sleep(5)
-    write_on_ser.init(case_size)
+    #write_on_ser.init(case_size)
 
-    x_last, y_last = x_origin, y_origin    
+    x_last, y_last = x_origin, y_origin
     for i in range(len(sudoku)):
         for k in range(len(sudoku[i])):
             j = get_inc(i, k)
+            print(sudoku[i][j], end=" ")
             if (sudoku[i][j] != 0) :
-                x, y = coords[i][j][1], coords[i][j][0]
-                number = sudoku[i][j]
-
-                write_on_ser.draw(number, y, x)
-                
-                sleep(get_time(x, x_last, y, y_last))
-                
-                x_last, y_last = x, y
+                #x, y = coords[i][j][1], coords[i][j][0]
+                #number = sudoku[i][j]
+                #write_on_ser.draw(number, y, x)
+                #sleep(get_time(x, x_last, y, y_last))
+                #x_last, y_last = x, y
+                j = 2
+            j = 1
+        print("")
 
     sleep(5)

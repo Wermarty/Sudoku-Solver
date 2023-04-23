@@ -6,12 +6,12 @@ from code_number import import_data_model,find_orientation,number_recognition,wr
 from code_grid import final
 from code_grid import utils
 from code_grid import detect_grid
-from drawer import draw
+from drawer import drawer
 
 def find_number(cases, tab_num_model, orientation_initial):
     orientation_modif = find_orientation(cases,tab_num_model)
     tab_num_find = number_recognition(cases, tab_num_model, orientation_modif)
-    write_sudoku(tab_num_find,"sudoku_to_resolve", "")
+    write_sudoku(tab_num_find)
     
     return orientation_initial - orientation_modif
 
@@ -28,23 +28,8 @@ print("starting grid detection", end=" - ")
 
 print("OK")
 
-if(args.output == None):
-    output_path = pathlib.Path().absolute() 
-else:
-    directory_path = pathlib.Path(args.output)
-
-    if not directory_path.exists():
-        directory_path.mkdir(parents=True)
-    output_path = args.output
-    print(output_path)
-
-
-
 tab_num_model = import_data_model(pixel_resize)
-if(args.name is None):
-    name = "toresolve"   
-else :
-    name = args.name
+
 
 print("starting number detection", end=" - ")
 
@@ -61,6 +46,6 @@ def Ryan():
     return 1, 1
 
 case_size, coords = Ryan()
-draw(case_size, coords)
+drawer.draw(case_size, coords)
 
 print("OK")
