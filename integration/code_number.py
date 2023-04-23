@@ -34,7 +34,7 @@ def img_is_empty(img):
         return True # Regarde si l'image contient des HF
     else : 
         return False
-x = 1
+
 # Trouve l'orientation de l'image
 def find_orientation(tab_num_to_reco, tab_num_model):
     possible_orientation = [0,90,180,270] # Differente orientations testées
@@ -78,8 +78,7 @@ def number_recognition(tab_num_to_reco, tab_num_model, orientation):
                 if test > max_inter_corr :
                     num = tab_num_model[k][1]
                     max_inter_corr = test
-
-            
+           
             if (orientation == 0):
                 tab_to_return[i,j] = num
             elif (orientation == 90):
@@ -92,7 +91,6 @@ def number_recognition(tab_num_to_reco, tab_num_model, orientation):
                 print("erreur orientation\n")
             
                     
-    print(tab_to_return)
     return tab_to_return
 
 
