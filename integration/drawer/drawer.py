@@ -1,4 +1,5 @@
 import serial
+import numpy as np
 from drawer import IOmanager
 from drawer import serWriter
 
@@ -25,17 +26,13 @@ def get_time(x, x_last, y, y_last):
 
 
 def get_good_coord(bad_coord):
-    good_coord = []
+    good_coord = np.zeros((9,9))
     for i in range(len(bad_coord)):
-        temp = []
         for j in range(len(bad_coord[i])):
             coord = []
             coord.append(pixel_to_cm(bad_coord[i,j][0]))
-            coord.append(pixel_to_cm(bad_coord[i,j][1]))
-            
-            
-            temp.append(coord)
-        good_coord.append(temp)
+            coord.append(pixel_to_cm(bad_coord[i,j][1])) 
+            good_coord[i,j] = (coord)
 
     return good_coord
 
