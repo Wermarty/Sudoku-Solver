@@ -8,7 +8,7 @@ class serWriter:
         self.ser.reset_input_buffer()
         
     def init(self, case_size):
-        msg = "init:" + str(case_size) + ":null"
+        msg = "init_case_size:" + str(case_size) + ":null"
         self.ser.write(msg.encode('utf-8'))
         self.ser.reset_input_buffer()
 
