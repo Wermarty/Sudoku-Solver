@@ -6,13 +6,8 @@
 #include <string.h>
 
 #define MAX_COLUMNS 25
-
-//int number_of_constraints(sudoku_t* psudoku, int x, int y);
-int backtracking(sudoku_t* psudoku, int nbempty);
-int optimised_backtracking(sudoku_t* psudoku, int nbempty);
-int count_contraints(sudoku_t* psudoku, int x, int y);
-void set_possibilities(sudoku_t* psudoku, int x, int y);
-
+#ifndef EMPTY
+#define EMPTY 0
 
 typedef struct {
   unsigned int number;  // stores the number between 1 and 9 (or 0 if not filled)
@@ -23,6 +18,13 @@ typedef struct {
 typedef struct {
   sudoku_cell_t cells[9][9]; //tableau de taille n², n² représentant la grille, 0 si le chiffre n'est pas rempli
 } sudoku_t;
+
+//int number_of_constraints(sudoku_t* psudoku, int x, int y);
+int backtracking(sudoku_t* psudoku, int nbempty);
+int optimised_backtracking(sudoku_t* psudoku, int nbempty);
+int count_contraints(sudoku_t* psudoku, int x, int y);
+void set_possibilities(sudoku_t* psudoku, int x, int y);
+
 
 sudoku_t create_sudoku(void);
 int number_of_empty_cells(sudoku_t sudoku);
