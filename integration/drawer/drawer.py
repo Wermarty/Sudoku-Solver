@@ -25,14 +25,12 @@ def get_time(x, x_last, y, y_last):
     return time_serial + time_travel + time_number
 
 
-def get_good_coord(bad_coord):
-    good_coord = np.zeros((9,9))
+def get_cm_coords(bad_coord):
+    good_coord = np.ndarray((9, 9, 2))
     for i in range(len(bad_coord)):
         for j in range(len(bad_coord[i])):
-            coord = []
-            coord.append(pixel_to_cm(bad_coord[i,j][0]))
-            coord.append(pixel_to_cm(bad_coord[i,j][1])) 
-            good_coord[i,j] = (coord)
+            good_coord[i, j, 0] = pixel_to_cm(1920 - bad_coord[j,8-i][0])
+            good_coord[i, j, 1] = pixel_to_cm(bad_coord[j,i][1])
 
     return good_coord
 
@@ -52,23 +50,25 @@ def draw(case_size, coords):
     x_origin, y_origin = Io.origin()
     sudoku = Io.sudoku()
 
+    cm_coords = get_cm_coords(coords)
+    print(cm_coords[0,0])
     #write_on_ser.draw(0, 0, 0)
-    sleep(0.5)
+    #sleep(0.5)
     #write_on_ser.reset()
-    sleep(5)
+    #sleep(5)
     #write_on_ser.init(case_size)
 
-    x_last, y_last = x_origin, y_origin
-    for i in range(len(sudoku)):
-        for k in range(len(sudoku[i])):
-            j = get_inc(i, k)
-            if (sudoku[i][j] != 0) :
-                #x, y = coords[i][j][1], coords[i][j][0]
-                #number = sudoku[i][j]
-                #write_on_ser.draw(number, y, x)
-                #sleep(get_time(x, x_last, y, y_last))
-                #x_last, y_last = x, y
-                j = 2
-            j = 1
-        j = 1
-    sleep(5)
+    #x_last, y_last = x_origin, y_origin
+    #for i in range(len(sudoku)):
+    #    for k in range(len(sudoku[i])):
+    #        j = get_inc(i, k)
+    #        if (sudoku[i][j] != 0) :
+    #            #x, y = coords[i][j][1], coords[i][j][0]
+    #            #number = sudoku[i][j]
+    #            #write_on_ser.draw(number, y, x)
+    #            #sleep(get_time(x, x_last, y, y_last))
+    #            #x_last, y_last = x, y
+    #            j = 2
+    #        j = 1
+    #    j = 1
+    #sleep(5)
