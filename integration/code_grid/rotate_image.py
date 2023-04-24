@@ -58,8 +58,7 @@ def rotate(img: np.ndarray, is_plot_edges: bool) -> np.ndarray:
 
     """
     angle = find_rotation(img, is_plot_edges)
-    center = tuple(map(lambda x: x/2, img.shape[:2]))
-    rotated = skt.rotate(img, angle, center=center,resize=True)
+    rotated = skt.rotate(img, angle,resize=True)
     return (256*rotated).astype(np.uint8) 
     
     
