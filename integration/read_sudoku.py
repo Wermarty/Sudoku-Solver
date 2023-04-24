@@ -26,11 +26,11 @@ if __name__ == "__main__":
     parser.add_argument("--size-case", help="size of the resized images of each case. 20 by default ", type=int)
     args = parser.parse_args()
 
-    input = "grille sudoku/sudoku.jpg"
+    input = "sudoku.jpg"
     if(args.input is not None):
         input = args.input
         
-    img = utils.read(args.input)
+    img = utils.read(input)
     if(img is None):
         print("can't read images")
         exit()

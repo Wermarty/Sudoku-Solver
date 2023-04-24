@@ -60,7 +60,6 @@ def draw(case_size, coords):
     for i in range(len(sudoku)):
         for k in range(len(sudoku[i])):
             j = get_inc(i, k)
-            print(sudoku[i][j], end=" ")
             if (sudoku[i][j] != 0) :
                 #x, y = coords[i][j][1], coords[i][j][0]
                 #number = sudoku[i][j]
@@ -69,6 +68,5 @@ def draw(case_size, coords):
                 #x_last, y_last = x, y
                 j = 2
             j = 1
-        print("")
-
+        j = 1
     sleep(5)

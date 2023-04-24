@@ -6,7 +6,6 @@
 #include <string.h>
 
 #define MAX_COLUMNS 25
-#ifndef EMPTY
 #define EMPTY 0
 
 typedef struct {
@@ -406,3 +405,13 @@ int write_sudoku(sudoku_t sudoku, char* filename) {
   return 1;
 }
 
+int main (void) {
+    
+    sudoku_t sudoku = read_sudoku("sudoku_to_resolve.txt");
+
+    int i = resolve(&sudoku, 1);
+
+    write_sudoku(sudoku, "resolved_sudoku.txt");
+
+    return 0;
+}
