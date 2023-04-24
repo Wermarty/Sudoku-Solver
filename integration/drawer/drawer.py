@@ -10,6 +10,9 @@ def get_inc(i, j):
 def dist2time(x):
     return 0.1 * x
 
+def pixel_to_cm(pixel):
+    return pixel * 1.25 / 68
+
 def get_time(x, x_last, y, y_last):
     time_serial = 0.5
     time_number = 1.70
@@ -27,8 +30,10 @@ def get_good_coord(bad_coord):
         temp = []
         for j in range(len(bad_coord[i])):
             coord = []
-            for k in range(len(bad_coord[i][j])):
-                coord.append(bad_coord[i][j][k]/2)
+            coord.append(pixel_to_cm(bad_coord[i,j][0]))
+            coord.append(pixel_to_cm(bad_coord[i,j][1]))
+            
+            
             temp.append(coord)
         good_coord.append(temp)
 
