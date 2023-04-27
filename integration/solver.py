@@ -9,7 +9,13 @@ from code_number import import_data_model,find_orientation,number_recognition,wr
 from code_grid import final
 from code_grid import utils
 from code_grid import detect_grid
-from drawer import drawer
+from drawer import drawer, initialise
+
+capture = False
+ryan = False
+hugo = False
+marcelin = False
+benjamin = False
 
 def find_number(cases, tab_num_model, orientation_initial):
     orientation_modif = find_orientation(cases,tab_num_model)
@@ -18,44 +24,49 @@ def find_number(cases, tab_num_model, orientation_initial):
 
     return orientation_initial - orientation_modif
 
-camera = PiCamera()
-camera.capture("sudoku.jpg")
+capture = True
+ryan = True
+hugo = True
+marcelin = True
+benjamin = True
+
+initialise.initialise()
+
+if capture:
+    camera = PiCamera()
+    camera.capture("sudoku.jpg")
 
 img = utils.read("sudoku.jpg")
 if(img is None):
     print("can't read images")
     exit()
 
-pixel_resize = 30
+pixel_resize = 40
 
 print("starting grid detection", end=" - ")
-
-[cases,theta] = final.read_grid(img,pixel_resize)
-
+if ryan:
+    [cases,theta] = final.read_grid(img,pixel_resize)
 print("OK")
 
 
 
 print("starting number detection", end=" - ")
-
-tab_num_model = import_data_model(pixel_resize)
-orientation = find_number(cases,tab_num_model, theta)
-
+if hugo:
+    tab_num_model = import_data_model(pixel_resize)
+    orientation = find_number(cases,tab_num_model, theta)
 print("OK")
 
 
 
 print("starting solver", end=" - ")
-
-os.system("./solver")
-sleep(1)
-
+if marcelin:
+    os.system("./solver")
+    sleep(1)
 print("OK")
 
 
 print("starting writing phase", end=" - ")
-
-case_size, coords = final.get_coordinates_cases(img)
-drawer.draw(case_size, coords)
-
+if benjamin:
+    case_size, coords = final.get_coordinates_cases(img)
+    drawer.draw(case_size, coords)
 print("OK")
